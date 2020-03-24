@@ -1,0 +1,7 @@
+{
+    "mongodb": {
+        "ip": "localhost",
+        "port": 27017
+    },
+    "global_prefix": "!"
+}

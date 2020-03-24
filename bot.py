@@ -1,7 +1,14 @@
 import json
 from discord.ext import commands
+import pymongo
 
-bot = commands.Bot(command_prefix="!", help_command=None)
+configdata = open('./config.json')
+config = json.load(configdata)
+
+mongodb = pymongo.MongoClient(host=config["mongodb"]["ip"], port=config["mongodb"]["port"])
+bot = commands.Bot(command_prefix=config["global_prefix"], help_command=None)
+
+mongo = pymongo.MongoClient()
 
 @bot.event
 async def on_ready():
@@ -13,4 +20,4 @@ async def helloworld(ctx):
 
 tokensdata = open('./token.json')
 tokens = json.load(tokensdata)
-bot.run(tokens["Discord Bot Token"])
+bot.run(tokens["bot_token"])
